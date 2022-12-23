@@ -1,6 +1,23 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import App from "next/app";
+import {AppContext, AppProps} from "next/app";
+import GlobalStyle from "../styles/GlobalStyle";
+import Navigator from "../components/Navigator";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+const app = ({Component, pageProps} : AppProps) => {
+ return (
+   <>
+    <GlobalStyle />
+    <Navigator />
+    <Component  {...pageProps}/>
+   </>
+ )
 }
+
+app.getInitialProps = async (context: AppContext) => {
+  const appInitialProps = await App.getInitialProps(context);
+  console.log(context.ctx.req?.headers.cookie);
+  return {...appInitialProps};
+}
+
+export default app;
