@@ -8,7 +8,7 @@ const app = ({Component, pageProps} : AppProps) => {
  return (
    <>
     <GlobalStyle />
-    <Navigator />
+    <Navigator {...pageProps} />
     <Component  {...pageProps}/>
    </>
  )
