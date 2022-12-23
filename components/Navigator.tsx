@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import styled from "styled-components";
 import styles from "./Navigator.module.scss";
-import About from './about';
+import About from './About';
 import History from './History';
 import Product from './Product';
 import Information from './Information';
