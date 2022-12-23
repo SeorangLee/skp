@@ -39,8 +39,8 @@ const Navigator: React.FC = (props) => {
         <div>logo</div>
         <div className='menu_container'>
           <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
-          <div>주요연혁</div>
-          <div>제품소개</div>
+          <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
+          <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
         </div>
       </NaviContainer>
       <Container>
