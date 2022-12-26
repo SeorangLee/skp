@@ -16,6 +16,16 @@ const History:React.FC = (props) => {
 
   }
 
+  const history_contents = [
+    {date: '2021-10', content : <div>ISO 13485 <br/>(의료기기 품질 경영시스템)<br/>인증 획득</div>},
+    {date: '2021-07', content : <div>의료기기 제조<br/> 및 품질관리 GMP<br/> 인증 획득</div>},
+    {date: '2021-05', content : <div>벤처기업 인증</div>},
+    {date: '2021-05', content : <div>과학기술정보통신부<br/>2021년도 인공지능<br/>학습용 데이터 구축<br/>지원 사업 참여기관 선정</div>},
+    {date: '2021-04', content : <div>50억 원 VC 투자유치</div>},
+    {date: '2021-02', content : <div>기업부설연구소 인정</div>},
+    {date: '2020-11', content : <div>㈜온택트헬스 설립</div>},
+  ]
+
   const Container = styled.div`
     background-color : #f9f9f9;
     display : flex;
@@ -59,6 +69,19 @@ const History:React.FC = (props) => {
               })}
             </div>
           </div>
+        </div>
+      </div>
+      <div className={styles.history_container}>
+        <div>주요 연혁</div>
+        <div className={styles.history_contents_container}>
+          {history_contents.map(content =>{
+            return<>
+              <div className={styles.history_content}>
+                <div>{content.date}</div>
+                <div>{content.content}</div>
+              </div>
+            </>
+          })}
         </div>
       </div>
     </Container>
