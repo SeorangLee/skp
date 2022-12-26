@@ -1,0 +1,37 @@
+.table_container{
+  // border:1px solid blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+  .table{
+    background-color: #ffffff;
+    // border:1px solid red;
+    display: flex;
+    gap: 5vw;
+    width: 80%;
+    padding: 5vw;
+
+
+  }
+
+
+}
+
+.table_column{
+  >div{
+    font-size:1vw;
+    font-weight: 500;
+    margin-bottom: 1vw;
+    color:#02073e;
+  }
+}
+
+.table_row{
+  // border:1px solid red;
+  >div{
+    font-size:1vw;
+    margin-bottom: 1vw;
+    color:#02073e;
+  }
+}
