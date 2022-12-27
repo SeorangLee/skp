@@ -1,9 +1,17 @@
 import React, {forwardRef, useRef} from "react";
 import styled from "styled-components";
 import Image from "next/dist/client/image";
-
+import styles from "./Product.module.scss"
 
 const Product:React.FC = (props) => {
+
+  const solutions = [
+    {id:'01', title:'심장초음파 화질 개선 알고리즘',memo:'Input image', img:<Image src="/images/sonix01.png" alt="" width={10} height={10} layout="responsive" />},
+    {id:'02', title:'영상 획득유도 및 분류 기술',memo:'Model specific DL', img:<Image src="/images/sonix02.png" alt="" width={10} height={10} layout="responsive" />},
+    {id:'03', title:'심장 구조 분할 기술',memo:'Segmentation', img:<Image src="/images/sonix03.png" alt="" width={10} height={10} layout="responsive" />},
+    {id:'04', title:'미세 근육 움직임 정량화 기술', memo:"Speckle Tracking",img:<Image src="/images/sonix04.png" alt="" width={10} height={10} layout="responsive" />},
+    {id:'05', title:'Auto-Reporting',memo:'', img:<Image src="/images/sonix05.png" alt="" width={10} height={10} layout="responsive" />},
+  ]
 
   const ImageContainer = styled.div`
     // position:absolute;
@@ -11,18 +19,33 @@ const Product:React.FC = (props) => {
     padding:3vw;
     display:flex;
     gap:1vw;
+    align-items:center;
+
     >div{
       position: unset !important
     }
     >div:nth-child(1){
-      height:3vw;
-      width:3vw;
-      padding:1vw;
+      height:4vw;
+      width:4vw;
+      padding:1.5vw;
       border-radius:50%;
+      // background-color:red;
       box-shadow: 0px 0px 20px  -10px gray;
     }
     >div:nth-child(2){
+      display:flex;
+      flex-direction:column;
+      width:75%;
+      gap:0.5vw;
       
+      >div:nth-child(1){
+        font-size:1.5vw;
+        font-weight:500;
+      }
+      >div:nth-child(2){
+        font-size:1.1vw;
+        line-height:280%;
+      }
     }
   `
 
@@ -32,10 +55,38 @@ const Product:React.FC = (props) => {
 
   return(
     <div>
-      <div></div>
-      <div></div>
-      <div>
-        <div>기존 제품과의 차별성</div>
+      <div className={styles.product1}>
+        <div className={styles.product1_img}>
+          <div><Image src="/images/sonix_logo.png" alt="" width={10} height={10} layout="responsive"/></div>
+        </div>
+        <div>
+          <div>❛ One-Click ❜ 심장 초음파 분석 솔루션</div>
+          <div>심장의 형태학적, 기능적 평가를 위한 자동 정량화 기술 개발</div>
+        </div>
+        <div className={styles.product1_img_2}>
+          <div><Image src="/images/sonix_ui_01.png" alt="" width={10} height={10} layout="responsive"/></div>
+          <div><Image src="/images/sonix_ui_02.png" alt="" width={10} height={10} layout="responsive"/></div>
+        </div>
+      </div>
+      <div className={styles.product2}>
+        <div>AI 기반 심장초음파 영상 분석 솔루션</div>
+        <div className={styles.solutions_container}>
+          {solutions.map(solution => {
+            return(
+              <>
+                <div className={styles.product2_solutions}>
+                  <div>{solution.id}</div>
+                  <div>{solution.title}</div>
+                  <div><div>{solution.img}</div></div>
+                  <div>{solution.memo}</div>
+                </div>
+              </>
+            )
+          })}
+        </div>
+      </div>
+      <div className={styles.container}>
+        <div className={styles.title}>기존 제품과의 차별성</div>
         <ProductInformation>
           <ImageContainer>
             <div><Image src="/images/share.png" alt="" width={10} height={10} layout="responsive"/></div>
