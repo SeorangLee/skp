@@ -1,83 +1,58 @@
-import React, {useRef} from 'react';
+import React, { useRef } from "react";
 import styled from "styled-components";
 import styles from "./Navigator.module.scss";
-import About from './About';
-import History from './History';
-import Product from './Product';
+import About from "./About";
+import History from "./History";
+import Product from "./Product";
 import Image from "next/dist/client/image";
-import {GiHamburgerMenu} from 'react-icons/gi'
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const NaviContainer = styled.div`
-  height:4rem;
-  // border:1px solid red;
-  background-color:white;
-  box-shadow: 0px 0.5px 5px  -3px black;
+  height: 4rem;
+  background-color: white;
+  box-shadow: 0px 0.5px 5px -3px black;
   display: flex;
   align-items: center;
-  padding-left:5vw;
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:3;
-  width:100%;
-   >div:nth-child(1){
-    //  border:1px solid blue;
-   }
-
-`
+  padding-left: 5vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+`;
 const Container = styled.div`
-  // border:1px solid blue;
-  >div{
-    // border:1px solid green;
 
-  }
-`
-// const ImgContainer = styled.div`
-//   // position:absolute;
-//   top: 0;
-//   left: 0; 
-//   // border:5px solid red;
-//   width:50%;
-//   height:100%;
-//   >div{
-//     position: unset !important
-//   }
-
-// `
+`;
 
 const Information = styled.div`
-  // border:1px solid red;
-  display : flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap:4vw;
-  padding:  1vw 0vw 2vw 0vw;
-  background-color : #f9f9f9;
-  box-shadow: 0px -0.5px 5px  -3px black;
-  >div:nth-child(2){
-    // border:1px solid red;
-    >div{ 
-      // color:red;
-      font-size:0.5vw;
-      margin-bottom:0.6vw;
+  gap: 4vw;
+  padding: 1vw 0vw 2vw 0vw;
+  background-color: #f9f9f9;
+  box-shadow: 0px -0.5px 5px -3px black;
+  > div:nth-child(2) {
+    > div {
+      font-size: 0.5vw;
+      margin-bottom: 0.6vw;
     }
   }
 
-  >div:nth-child(3){
-    display:flex;
-    gap:3vw;
-    >div{
-      width:100%;
-      font-size:1vw;
-      font-weight:500;
+  > div:nth-child(3) {
+    display: flex;
+    gap: 3vw;
+    > div {
+      width: 100%;
+      font-size: 1vw;
+      font-weight: 500;
     }
   }
-
-`
+`;
 const Navigator: React.FC = (props) => {
-  const AboutRef = useRef<null|HTMLDivElement>(null);
-  const HistoryRef = useRef<null|HTMLDivElement>(null);
-  const ProductRef = useRef<null|HTMLDivElement>(null);
+  const AboutRef = useRef<null | HTMLDivElement>(null);
+  const HistoryRef = useRef<null | HTMLDivElement>(null);
+  const ProductRef = useRef<null | HTMLDivElement>(null);
   return (
     <>
       <div className={styles.NavContainer}>
@@ -90,7 +65,7 @@ const Navigator: React.FC = (props) => {
           <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
         </div>
         <div className={styles.burgerBtn}>
-          <GiHamburgerMenu size={"3vh"}/>
+          <GiHamburgerMenu size={"3vh"} />
         </div>
       </div>
       <Container>
@@ -118,10 +93,8 @@ const Navigator: React.FC = (props) => {
           <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
         </div>
       </Information>
-      
     </>
-
-  ) 
-}
+  );
+};
 
 export default Navigator;
