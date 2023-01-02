@@ -5,6 +5,7 @@ import About from './About';
 import History from './History';
 import Product from './Product';
 import Image from "next/dist/client/image";
+import {GiHamburgerMenu} from 'react-icons/gi'
 
 const NaviContainer = styled.div`
   height:4rem;
@@ -22,15 +23,7 @@ const NaviContainer = styled.div`
    >div:nth-child(1){
     //  border:1px solid blue;
    }
-   .menu_container {
-     margin-left : 20vw;   
-     display: flex;
-     gap:5vw;
-     >div{
-       font-size:1.2vw;
-       font-weight: 400;
-     }
-   }
+
 `
 const Container = styled.div`
   // border:1px solid blue;
@@ -87,16 +80,19 @@ const Navigator: React.FC = (props) => {
   const ProductRef = useRef<null|HTMLDivElement>(null);
   return (
     <>
-      <NaviContainer>
+      <div className={styles.NavContainer}>
         <div>
           <Image src="/images/logo.png" alt="logo" width={110} height={40} layout="reponsive"/>
         </div>
-        <div className='menu_container'>
+        <div className={styles.menu_container}>
           <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
           <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
           <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
         </div>
-      </NaviContainer>
+        <div className={styles.burgerBtn}>
+          <GiHamburgerMenu size={"3vh"}/>
+        </div>
+      </div>
       <Container>
         <div ref={AboutRef}>
           <About />
