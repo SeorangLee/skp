@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { FlexCenter, KeyValueGrid } from "../../styles/components/layout";
 
@@ -20,10 +21,10 @@ const CompanyInfoComponent = ({ companyInfo }: Prop) => {
     <CompanyInfo>
       <div>
         <KeyValueGrid className="bg-white key-value">
-          {array.map(key => <>
+          {array.map(key => <React.Fragment key={key}>
             <div>{key}</div>
             <div>{companyInfo[key]}</div>
-          </>)}
+          </React.Fragment>)}
         </KeyValueGrid>
       </div>
     </CompanyInfo>
