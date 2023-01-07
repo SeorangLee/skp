@@ -1,6 +1,7 @@
 import React, {forwardRef, useRef} from "react";
 import styled from "styled-components";
 import Image from "next/dist/client/image";
+import styles from "./About.module.scss"
 
 
 const Container = styled.div`
@@ -85,19 +86,19 @@ position:relative;
 const About:React.FC = (props) => {
   return(
     <>
-    <Container>
-      <Banner>
-        <Image src="/images/banner-bg.png" alt="banner" width={600} height={250} layout="responsive"/>
+    <div className={styles.container}>
+      <div className={styles.banner}>
+        <Image src="/images/banner-bg.png" alt="banner" width={1700} height={700} />
         <div>
           <div>Our mission is to make healthcare service sustainable through transforming data to knowledge</div>
           <div>㈜온택트헬스는 자체적으로 보유하고 있는 의료 데이터 분석 전문 조직과 데이터 생성 SOP를 기반으로 양질의 심장초음파 참값 DB를 생성하고 있고, 이를 활용하여 심장초음파 영상 분석 AI 소프트웨어를 개발하고 있습니다.</div>
         </div>
-      </Banner>
+      </div >
       <div>
-        <ImgContainer >
+        <div className={styles.imgContainer}>
           {/* <Image src="/images/medical.jpg" alt="about_image"  layout="fill"/> */}
           <Image src="/images/medical.jpg" alt="about_image"  width={200} height={150} layout="responsive"/>
-        </ImgContainer>
+        </div>
 
         <div>
           <div>Supply of quality software required in the medical field</div>
@@ -105,7 +106,7 @@ const About:React.FC = (props) => {
         </div>
       </div>
 
-    </Container>
+    </div>
     </>
   )
 }
