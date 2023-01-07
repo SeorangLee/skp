@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import styles from "./Navigator.module.scss";
 import About from "./About";
@@ -6,7 +6,7 @@ import History from "./History";
 import Product from "./Product";
 import Image from "next/dist/client/image";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { CursorPointer } from "../styles/components/layout";
+import { ScrollTo, useRefs } from "../util/hooks";
 
 const NaviContainer = styled.div`
   height: 4rem;
@@ -22,7 +22,6 @@ const NaviContainer = styled.div`
   width: 100%;
 `;
 const Container = styled.div`
-
 `;
 
 const Information = styled.div`
@@ -52,9 +51,9 @@ const Information = styled.div`
 `;
 const Navigator: React.FC = (props) => {
   const [refs, register] = useRefs();
-  const AboutRef = useRef<null | HTMLDivElement>(null);
-  const HistoryRef = useRef<null | HTMLDivElement>(null);
-  const ProductRef = useRef<null | HTMLDivElement>(null);
+  const aboutRefName = 'about';
+  const historyRefName = 'history';
+  const productRefName = 'product';
   return (
     <>
       <div className={styles.NavContainer}>
@@ -62,26 +61,22 @@ const Navigator: React.FC = (props) => {
           <Image src="/images/logo.png" alt="logo" width={110} height={40} layout="reponsive"/>
         </div>
         <div className={styles.menu_container}>
-          <ScrollTo ref={refs}>회사소개</ScrollTo>
-          <CursorPointer onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</CursorPointer>
-          <CursorPointer onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</CursorPointer>
-          <CursorPointer onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</CursorPointer>
+          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
+          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
+          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
         </div>
         <div className={styles.burgerBtn}>
           <GiHamburgerMenu size={"3vh"} />
         </div>
       </div>
       <Container>
-        {/* <div ref={AboutRef}>
-          <About />
-        </div> */}
-        <div ref={(register as Function)('test')}>
+        <div ref={(register as Function)(aboutRefName)}>
           <About />
         </div>
-        <div ref={HistoryRef}>
+        <div ref={(register as Function)(historyRefName)}>
           <History />
         </div>
-        <div ref={ProductRef}>
+        <div ref={(register as Function)(productRefName)}>
           <Product />
         </div>
       </Container>
@@ -94,40 +89,13 @@ const Navigator: React.FC = (props) => {
           <div>Copyright © 2022 주식회사 온택트헬스 ONTACT HEALTH Co.,Ltd. All rights reserved.</div>
         </div>
         <div>
-          <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
-          <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
-          <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
+          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
+          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
+          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
         </div>
       </Information>
     </>
   );
 };
-
-interface IScrollTo {
-  // ref: React.MutableRefObject<HTMLDivElement | null>;
-  ref: any;
-  children: any;
-}
-
-const ScrollTo = ({ref, children}: IScrollTo) => {
-  const [refs, register] = useRefs();
-  
-  const onClick = React.useCallback(() => {
-    (((refs as any).current as any)?.['test'])?.scrollIntoView({behavior:'smooth'});
-  }, [refs])
-
-  return <CursorPointer onClick={onClick}>{children}</CursorPointer>
-}
-
-function useRefs() {
-  const refs = useRef({});
-
-  const register = useCallback((refName: string) => (ref: any) => {
-    (refs.current as any)[refName] = ref;
-  }, []);
-
-  return [refs, register];
-}
-
 
 export default Navigator;
