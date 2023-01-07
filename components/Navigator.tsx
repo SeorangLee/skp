@@ -1,83 +1,59 @@
-import React, {useRef} from 'react';
+import React from "react";
 import styled from "styled-components";
 import styles from "./Navigator.module.scss";
-import About from './About';
-import History from './History';
-import Product from './Product';
+import About from "./About";
+import History from "./History";
+import Product from "./Product";
 import Image from "next/dist/client/image";
-import {GiHamburgerMenu} from 'react-icons/gi'
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ScrollTo, useRefs } from "../util/hooks";
 
 const NaviContainer = styled.div`
-  height:4rem;
-  // border:1px solid red;
-  background-color:white;
-  box-shadow: 0px 0.5px 5px  -3px black;
+  height: 4rem;
+  background-color: white;
+  box-shadow: 0px 0.5px 5px -3px black;
   display: flex;
   align-items: center;
-  padding-left:5vw;
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:3;
-  width:100%;
-   >div:nth-child(1){
-    //  border:1px solid blue;
-   }
-
-`
+  padding-left: 5vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+`;
 const Container = styled.div`
-  // border:1px solid blue;
-  >div{
-    // border:1px solid green;
-
-  }
-`
-// const ImgContainer = styled.div`
-//   // position:absolute;
-//   top: 0;
-//   left: 0; 
-//   // border:5px solid red;
-//   width:50%;
-//   height:100%;
-//   >div{
-//     position: unset !important
-//   }
-
-// `
+`;
 
 const Information = styled.div`
-  // border:1px solid red;
-  display : flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap:4vw;
-  padding:  1vw 0vw 2vw 0vw;
-  background-color : #f9f9f9;
-  box-shadow: 0px -0.5px 5px  -3px black;
-  >div:nth-child(2){
-    // border:1px solid red;
-    >div{ 
-      // color:red;
-      font-size:0.5vw;
-      margin-bottom:0.6vw;
+  gap: 4vw;
+  padding: 1vw 0vw 2vw 0vw;
+  background-color: #f9f9f9;
+  box-shadow: 0px -0.5px 5px -3px black;
+  > div:nth-child(2) {
+    > div {
+      font-size: 0.5vw;
+      margin-bottom: 0.6vw;
     }
   }
 
-  >div:nth-child(3){
-    display:flex;
-    gap:3vw;
-    >div{
-      width:100%;
-      font-size:1vw;
-      font-weight:500;
+  > div:nth-child(3) {
+    display: flex;
+    gap: 3vw;
+    > div {
+      width: 100%;
+      font-size: 1vw;
+      font-weight: 500;
     }
   }
-
-`
+`;
 const Navigator: React.FC = (props) => {
-  const AboutRef = useRef<null|HTMLDivElement>(null);
-  const HistoryRef = useRef<null|HTMLDivElement>(null);
-  const ProductRef = useRef<null|HTMLDivElement>(null);
+  const [refs, register] = useRefs();
+  const aboutRefName = 'about';
+  const historyRefName = 'history';
+  const productRefName = 'product';
   return (
     <>
       <div className={styles.NavContainer}>
@@ -85,22 +61,22 @@ const Navigator: React.FC = (props) => {
           <Image src="/images/logo.png" alt="logo" width={110} height={40} layout="reponsive"/>
         </div>
         <div className={styles.menu_container}>
-          <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
-          <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
-          <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
+          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
+          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
+          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
         </div>
         <div className={styles.burgerBtn}>
-          <GiHamburgerMenu size={"3vh"}/>
+          <GiHamburgerMenu size={"3vh"} />
         </div>
       </div>
       <Container>
-        <div ref={AboutRef}>
+        <div ref={(register as Function)(aboutRefName)}>
           <About />
         </div>
-        <div ref={HistoryRef}>
+        <div ref={(register as Function)(historyRefName)}>
           <History />
         </div>
-        <div ref={ProductRef}>
+        <div ref={(register as Function)(productRefName)}>
           <Product />
         </div>
       </Container>
@@ -113,15 +89,13 @@ const Navigator: React.FC = (props) => {
           <div>Copyright © 2022 주식회사 온택트헬스 ONTACT HEALTH Co.,Ltd. All rights reserved.</div>
         </div>
         <div>
-          <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
-          <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
-          <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
+          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
+          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
+          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
         </div>
       </Information>
-      
     </>
-
-  ) 
-}
+  );
+};
 
 export default Navigator;

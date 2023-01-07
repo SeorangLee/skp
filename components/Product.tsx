@@ -1,10 +1,9 @@
-import React, {forwardRef, useRef} from "react";
+import React from "react";
 import styled from "styled-components";
 import Image from "next/dist/client/image";
-import styles from "./Product.module.scss"
+import styles from "./Product.module.scss";
 
-const Product:React.FC = (props) => {
-
+const Product: React.FC = (props) => {
   const solutions = [
     {id:'01', title:'심장초음파 화질 개선 알고리즘',memo:'Input image', img:<Image src="/images/sonix01.png" alt="" width={10} height={10} layout="responsive" />},
     {id:'02', title:'영상 획득유도 및 분류 기술',memo:'Model specific DL', img:<Image src="/images/sonix02.png" alt="" width={10} height={10} layout="responsive" />},
@@ -14,50 +13,52 @@ const Product:React.FC = (props) => {
   ]
 
   const ImageContainer = styled.div`
-    // position:absolute;
-    // border:5px solid red;
-    padding:3vw;
-    display:flex;
-    gap:1vw;
-    align-items:center;
+    padding: 3vw;
+    display: flex;
+    gap: 1vw;
+    align-items: center;
 
-    >div{
-      position: unset !important
+    > div {
+      position: unset !important;
     }
-    >div:nth-child(1){
-      height:4vw;
-      width:4vw;
-      padding:1.5vw;
-      border-radius:50%;
-      // background-color:red;
-      box-shadow: 0px 0px 20px  -10px gray;
+    > div:nth-child(1) {
+      height: 4vw;
+      width: 4vw;
+      padding: 1.5vw;
+      border-radius: 50%;
+      box-shadow: 0px 0px 20px -10px gray;
     }
-    >div:nth-child(2){
-      display:flex;
-      flex-direction:column;
-      width:75%;
-      gap:0.5vw;
-      
-      >div:nth-child(1){
-        font-size:1.5vw;
-        font-weight:500;
+    > div:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      width: 75%;
+      gap: 0.5vw;
+
+      > div:nth-child(1) {
+        font-size: 1.5vw;
+        font-weight: 500;
       }
-      >div:nth-child(2){
-        font-size:1.1vw;
-        line-height:280%;
+      > div:nth-child(2) {
+        font-size: 1.1vw;
+        line-height: 280%;
       }
     }
-  `
+  `;
 
-  const ProductInformation = styled.div`
+  const ProductInformation = styled.div``;
 
-  `
-
-  return(
+  return (
     <div>
       <div className={styles.product1}>
         <div className={styles.product1_img}>
-          <div><Image src="/images/sonix_logo.png" alt="" width={450} height={60} /></div>
+          <div>
+            <Image
+              src="/images/sonix_logo.png"
+              alt=""
+              width={450}
+              height={60}
+            />
+          </div>
         </div>
         <div>
           <div>❛ One-Click ❜ 심장 초음파 분석 솔루션</div>
@@ -71,17 +72,19 @@ const Product:React.FC = (props) => {
       <div className={styles.product2}>
         <div>AI 기반 심장초음파 영상 분석 솔루션</div>
         <div className={styles.solutions_container}>
-          {solutions.map(solution => {
-            return(
+          {solutions.map((solution) => {
+            return (
               <>
                 <div className={styles.product2_solutions}>
                   <div>{solution.id}</div>
                   <div>{solution.title}</div>
-                  <div><div>{solution.img}</div></div>
+                  <div>
+                    <div>{solution.img}</div>
+                  </div>
                   <div>{solution.memo}</div>
                 </div>
               </>
-            )
+            );
           })}
         </div>
       </div>
@@ -89,7 +92,15 @@ const Product:React.FC = (props) => {
         <div className={styles.title}>기존 제품과의 차별성</div>
         <ProductInformation>
           <ImageContainer>
-            <div><Image src="/images/share.png" alt="" width={10} height={10} layout="responsive"/></div>
+            <div>
+              <Image
+                src="/images/share.png"
+                alt=""
+                width={10}
+                height={10}
+                layout="responsive"
+              />
+            </div>
             <div>
               <div>어디서나 접근 가능하며 분석결과 공유가 가능한 솔루션</div>
               <div>Sonix Health는 Web기반으로 구현되어 있어 어디서나 접근 가능하며, 특별한 원내 시스템 구축이 없더라도 의료진간 분석결과 공유가 가능한 솔루션입니다.</div>
@@ -111,11 +122,8 @@ const Product:React.FC = (props) => {
           </ImageContainer>
         </ProductInformation>
       </div>
-      <div>
-
-      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Product;

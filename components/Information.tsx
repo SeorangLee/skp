@@ -1,12 +1,7 @@
-import React, {forwardRef, useRef} from "react";
-import styled from "styled-components";
+import React from "react";
 
-
-const Information:React.FC = (props) => {
-  return(
-    <>
-    </>
-  )
-}
+const Information: React.FC = (props) => {
+  return <></>;
+};
 
 export default Information;
