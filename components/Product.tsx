@@ -57,7 +57,7 @@ const Product:React.FC = (props) => {
     <div>
       <div className={styles.product1}>
         <div className={styles.product1_img}>
-          <div><Image src="/images/sonix_logo.png" alt="" width={10} height={10} layout="responsive"/></div>
+          <div><Image src="/images/sonix_logo.png" alt="" width={450} height={60} /></div>
         </div>
         <div>
           <div>❛ One-Click ❜ 심장 초음파 분석 솔루션</div>

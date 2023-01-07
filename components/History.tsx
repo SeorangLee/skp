@@ -36,12 +36,12 @@ const History:React.FC = (props) => {
     padding-top:8vw;
     >div:nth-child(1){
       width: 70%;
-      font-size:3vw;
+      font-size:5vh;
       text-align : center;
     }
     >div:nth-child(2){
       width: 70%;
-      font-size:1vw;
+      font-size:2vh;
       line-height: 170%;
       text-align : center;
     }

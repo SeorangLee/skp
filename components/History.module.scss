@@ -20,7 +20,7 @@
 
 .table_column{
   >div{
-    font-size:1vw;
+    font-size:2vh;
     font-weight: 500;
     margin-bottom: 1vw;
     color:#02073e;
@@ -30,7 +30,7 @@
 .table_row{
   // border:1px solid red;
   >div{
-    font-size:1vw;
+    font-size:2vh;
     margin-bottom: 1vw;
     color:#02073e;
   }
@@ -61,23 +61,27 @@
 
 .history_content{
   // border:1px solid red;
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   // width: 33%;
   min-width: 200px;
   height: 15vw;
   align-items: center;
   justify-content: center;
   gap: 1vw;
+  padding-top: 2vw;
   >div:nth-child(1){
-    font-size: 1vw;
+    font-size: 2.3vh;
+    text-align: center;
     font-weight: 600;
     color: #02073e;
+    margin: 1vw;
   }
   >div:nth-child(2){
-    font-size: 0.7vw;
+    font-size: 1.5vh;
+    margin-top: 2vw;
     color: #02073e;
-    width: 80%;
+    // width: 80%;
     line-height: 170%;
     text-align: center;
   }
