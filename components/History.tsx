@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FlexCenter, KeyValueGrid } from "../styles/components/layout";
+import { FlexCenter, FlexColumnCenter, KeyValueGrid } from "../styles/components/layout";
 import { generateKey } from "../util";
 import styles from "./History.module.scss";
 
@@ -46,45 +46,49 @@ const History: React.FC = (props) => {
   return (
     <Container>
       <div>회사 소개</div>
-      <div>장혁재 대표이사는 경력 20년 이상의 임상전문가로 다년간 의료 영상 처리 기술과 인공지능, 가상현실 소프트웨어 기술을 연구해왔으며,
-      의료 산업에 대한 통찰력을 바탕으로 그간의 성과를 단계적으로 산업화하기 위해 ㈜온택트헬스를 설립하였습니다.</div>
-      <div className={styles.table_container}>
-        <div className={styles.table}>
-          {CompanyInfoComponent(companyInfo)}
-        </div>
+      <div>
+        장혁재 대표이사는 경력 20년 이상의 임상전문가로 다년간 의료 영상 처리 기술과 인공지능, 가상현실 소프트웨어 기술을 연구해왔으며,
+      의료 산업에 대한 통찰력을 바탕으로 그간의 성과를 단계적으로 산업화하기 위해 ㈜온택트헬스를 설립하였습니다.
       </div>
-      <div className={styles.history_container}>
+      {CompanyInfoComponent(companyInfo)}
+      <FlexColumnCenter className={styles.history_container + ' bg-white w-100'}>
         <div>주요 연혁</div>
-        <div className={styles.history_contents_container}>
+        <FlexCenter className={styles.history_contents_container}>
           {generateKey(historyContents).map(content => (
           <div key={content.key} className={styles.history_content}>
             <div>{content.date}</div>
             <div>{content.content}</div>
           </div>
           ))}
-        </div>
-      </div>
+        </FlexCenter>
+      </FlexColumnCenter>
     </Container>
   );
 };
 
-const CompanyInfo = styled(KeyValueGrid)`
-  grid-template-columns: 1fr 4fr;
-  font-size: 2vh;
+const CompanyInfo = styled(FlexCenter)`
+  padding: 5vw;
+  .key-value {
+    grid-template-columns: 1fr 4fr;
+    font-size: 2vh;
+    padding: 5vw;
+  }
 `;
 
 const CompanyInfoComponent = (obj: Record<string, string>) => {
   const array = Object.keys(obj);
   return (
     <CompanyInfo>
-      {array.map(key => <>
-        <div>{key}</div>
-        <div>{obj[key]}</div>
-      </>)}
+      <div style={{width: '80%'}}>
+        <KeyValueGrid className="bg-white key-value">
+          {array.map(key => <>
+            <div>{key}</div>
+            <div>{obj[key]}</div>
+          </>)}
+        </KeyValueGrid>
+      </div>
     </CompanyInfo>
   )
 }
-
-
 
 export default History;

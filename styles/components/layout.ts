@@ -1,12 +1,41 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Flex = styled.div`
   display: flex;
 `;
 
-export const FlexCenter = styled(Flex)`
+const FlexAlignCenterCss = css`
   align-items: center;
-  justify-content: center;
+`;
+
+const FlexJustifyCenterCss = css`
+  align-items: center;
+`;
+
+const FlexCenterCss = css`
+  ${FlexAlignCenterCss};
+  ${FlexJustifyCenterCss};
+`;
+
+const FlexColumnCss = css`
+  flex-direction: column;
+`;
+
+export const FlexColumn = styled(Flex)`
+  ${FlexColumnCss};
+`;
+
+export const FlexAlignCenter = styled(Flex)`
+  ${FlexAlignCenterCss};
+`;
+
+export const FlexCenter = styled(Flex)`
+  ${FlexCenterCss};
+`;
+
+export const FlexColumnCenter = styled(FlexColumn)`
+  ${FlexCenterCss};
+  ${FlexColumnCss};
 `;
 
 export const Grid = styled.div`
@@ -15,6 +44,7 @@ export const Grid = styled.div`
 
 export const KeyValueGrid = styled(Grid)`
   grid-template-columns: 1fr 1fr;
+  line-height: 120%;
   > div:nth-child(odd) {
     font-weight: 500;
   }
