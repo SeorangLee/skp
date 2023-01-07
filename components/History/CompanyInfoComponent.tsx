@@ -28,6 +28,6 @@ const CompanyInfoComponent = ({ companyInfo }: Prop) => {
       </div>
     </CompanyInfo>
   )
-}
+};
 
 export default CompanyInfoComponent;

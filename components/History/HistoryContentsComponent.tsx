@@ -42,6 +42,6 @@ const HistoryContentsComponent = () => {
       </HistoryContents>
     </FlexColumnCenter>
   );
-}
+};
 
 export default HistoryContentsComponent;

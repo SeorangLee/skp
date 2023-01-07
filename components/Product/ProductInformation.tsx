@@ -44,7 +44,7 @@ export const ProductInformation = ({ products }: Props) => {
   return <>
     {generateKey(products).map(it => <ProdocutItem key={it.key} img={it.img} productInfo={it.productInfo} />)}
   </>
-}
+};
 
 const ProdocutItem = ({ img, productInfo }: Product) => {
   return (
@@ -56,4 +56,4 @@ const ProdocutItem = ({ img, productInfo }: Product) => {
       </div>
   </ImageContainer>
   );
-}
+};
