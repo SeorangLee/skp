@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import styled from "styled-components";
 import styles from "./Navigator.module.scss";
 import About from "./About";
@@ -6,6 +6,7 @@ import History from "./History";
 import Product from "./Product";
 import Image from "next/dist/client/image";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { CursorPointer } from "../styles/components/layout";
 
 const NaviContainer = styled.div`
   height: 4rem;
@@ -50,6 +51,7 @@ const Information = styled.div`
   }
 `;
 const Navigator: React.FC = (props) => {
+  const [refs, register] = useRefs();
   const AboutRef = useRef<null | HTMLDivElement>(null);
   const HistoryRef = useRef<null | HTMLDivElement>(null);
   const ProductRef = useRef<null | HTMLDivElement>(null);
@@ -60,16 +62,20 @@ const Navigator: React.FC = (props) => {
           <Image src="/images/logo.png" alt="logo" width={110} height={40} layout="reponsive"/>
         </div>
         <div className={styles.menu_container}>
-          <div onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</div>
-          <div onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</div>
-          <div onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</div>
+          <ScrollTo ref={refs}>회사소개</ScrollTo>
+          <CursorPointer onClick={()=>{AboutRef.current?.scrollIntoView({behavior:'smooth'})}}>회사소개</CursorPointer>
+          <CursorPointer onClick={()=>{HistoryRef.current?.scrollIntoView({behavior:'smooth'})}}>주요연혁</CursorPointer>
+          <CursorPointer onClick={()=>{ProductRef.current?.scrollIntoView({behavior:'smooth'})}}>제품소개</CursorPointer>
         </div>
         <div className={styles.burgerBtn}>
           <GiHamburgerMenu size={"3vh"} />
         </div>
       </div>
       <Container>
-        <div ref={AboutRef}>
+        {/* <div ref={AboutRef}>
+          <About />
+        </div> */}
+        <div ref={(register as Function)('test')}>
           <About />
         </div>
         <div ref={HistoryRef}>
@@ -96,5 +102,32 @@ const Navigator: React.FC = (props) => {
     </>
   );
 };
+
+interface IScrollTo {
+  // ref: React.MutableRefObject<HTMLDivElement | null>;
+  ref: any;
+  children: any;
+}
+
+const ScrollTo = ({ref, children}: IScrollTo) => {
+  const [refs, register] = useRefs();
+  
+  const onClick = React.useCallback(() => {
+    (((refs as any).current as any)?.['test'])?.scrollIntoView({behavior:'smooth'});
+  }, [refs])
+
+  return <CursorPointer onClick={onClick}>{children}</CursorPointer>
+}
+
+function useRefs() {
+  const refs = useRef({});
+
+  const register = useCallback((refName: string) => (ref: any) => {
+    (refs.current as any)[refName] = ref;
+  }, []);
+
+  return [refs, register];
+}
+
 
 export default Navigator;
