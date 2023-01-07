@@ -1,7 +1,6 @@
 .title{
   font-size: 3vw;
   color: #02073e;
-  // border:1px solid red;
   text-align: center;
 }
 
@@ -13,12 +12,10 @@
 }
 
 .product1{
-  // border:1px solid red;
   background-color: #e8ebf1;
   padding :  2vw 0 5vw 0;
 
   >div:nth-child(2){
-    // border:1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,19 +33,14 @@
 }
 .product1_img{
   padding:3vw 0 5vw 0;
-  // border:1px solid red;
   display:flex;
   gap:1vw;
-  // align-items:center;
-  // display: flex;
   justify-content: center;
 
   >div{
     position: unset !important
   }
   >div:nth-child(1){
-    // height:4vw;
-    // border:1px solid red;
     display: flex;
     justify-content: center;
     width:45vw;
@@ -59,7 +51,6 @@
   display:flex;
   gap:1vw;
   align-items:center;
-  display: flex;
   justify-content: center;
 
   >div{
@@ -70,9 +61,8 @@
 }
 
 .product2{
-  background-image: url('../public/images/patternBG.png');
+  background-image: url('../../public/images/patternBG.png');
   background-color: #2d68b2;
-  // border:1px solid red;
   padding:  5vw 1vw 5vw 1vw;
   display: flex;
   flex-direction: column;
@@ -97,13 +87,9 @@
   display: flex;
   flex-direction: column;
   width: 13rem;
-  // width: 100%;
   min-width: 200;
   gap: 1vw;
-  // border:1px solid red;
-  
   >div:nth-child(1){
-    // border:1px solid red;
     width: 6vh;
     height: 6vh;
     display: flex;
@@ -120,7 +106,6 @@
     font-weight: 400;
     width: 200px;
     line-height: 200%;
-    // border:1px solid red;
     height: 80px;
   }
   >div:nth-child(3){

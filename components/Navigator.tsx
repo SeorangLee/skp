@@ -6,7 +6,9 @@ import History from "./History";
 import Product from "./Product";
 import Image from "next/dist/client/image";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { ScrollTo, useRefs } from "../util/hooks";
+import { Ref, ScrollTo, useRefs } from "../util/hooks";
+import { logo } from "../assets/images";
+import { generateKey } from "../util";
 
 const NaviContainer = styled.div`
   height: 4rem;
@@ -51,51 +53,64 @@ const Information = styled.div`
 `;
 const Navigator: React.FC = (props) => {
   const [refs, register] = useRefs();
-  const aboutRefName = 'about';
-  const historyRefName = 'history';
-  const productRefName = 'product';
+  const scrollNavArr = [
+    { name: '회사소개', refName: 'about' },
+    { name: '주요연혁', refName: 'history' },
+    { name: '제품소개', refName: 'product' },
+  ];
+
   return (
     <>
       <div className={styles.NavContainer}>
         <div>
-          <Image src="/images/logo.png" alt="logo" width={110} height={40} layout="reponsive"/>
+          <Image src={logo.url} alt={logo.alt} width={110} height={40} layout="reponsive"/>
         </div>
-        <div className={styles.menu_container}>
-          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
-          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
-          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
-        </div>
+        <ScrollNav className={styles.menu_container} refs={refs} scrollNavArr={scrollNavArr} />
         <div className={styles.burgerBtn}>
           <GiHamburgerMenu size={"3vh"} />
         </div>
       </div>
       <Container>
-        <div ref={(register as Function)(aboutRefName)}>
+        <div ref={(register as Function)(scrollNavArr[0].refName)}>
           <About />
         </div>
-        <div ref={(register as Function)(historyRefName)}>
+        <div ref={(register as Function)(scrollNavArr[1].refName)}>
           <History />
         </div>
-        <div ref={(register as Function)(productRefName)}>
+        <div ref={(register as Function)(scrollNavArr[2].refName)}>
           <Product />
         </div>
       </Container>
       <Information>
-        <div><Image src="/images/logo.png" alt="logo" width={80} height={28} layout="reponsive"/></div>
+        <div><Image src={logo.url} alt={logo.alt} width={80} height={28} layout="reponsive"/></div>
         <div>
           <div>(48932) 부산광역시 중구 대청로 121-1, 102동 1309호(대청동1가, 코모도에스테이트) 주식회사 온택트헬스</div>
           <div>대표 장혁재 | 사업자등록번호 436-88-02020 | Email : cdh82@ontacthealth.com</div>
           <div>Tel : 02-362-9610 | Fax : 02-362-9611</div>
           <div>Copyright © 2022 주식회사 온택트헬스 ONTACT HEALTH Co.,Ltd. All rights reserved.</div>
         </div>
-        <div>
-          <ScrollTo refs={refs} refName={aboutRefName}>회사소개</ScrollTo>
-          <ScrollTo refs={refs} refName={historyRefName}>주요연혁</ScrollTo>
-          <ScrollTo refs={refs} refName={productRefName}>제품소개</ScrollTo>
-        </div>
+        <ScrollNav refs={refs} scrollNavArr={scrollNavArr} />
       </Information>
     </>
   );
 };
+
+interface ScrollNavPros {
+  refs: Ref<Record<string, Ref>>;
+  scrollNavArr: {
+    name: string;
+    refName: string;
+  }[];
+  className?: string;
+}
+
+const ScrollNav = ({ refs, scrollNavArr, className = '' }: ScrollNavPros) => {
+  return (
+    <div className={className}>
+      {generateKey(scrollNavArr).map(it =>
+        <ScrollTo key={it.key} refs={refs} refName={it.refName}>{it.name}</ScrollTo> )}
+    </div>
+  )
+}
 
 export default Navigator;

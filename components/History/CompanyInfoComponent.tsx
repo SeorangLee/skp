@@ -10,15 +10,19 @@ const CompanyInfo = styled(FlexCenter)`
   }
 `;
 
-const CompanyInfoComponent = (obj: Record<string, string>) => {
-  const array = Object.keys(obj);
+interface Prop {
+  companyInfo: Record<string, string>
+}
+
+const CompanyInfoComponent = ({ companyInfo }: Prop) => {
+  const array = Object.keys(companyInfo);
   return (
     <CompanyInfo>
       <div>
         <KeyValueGrid className="bg-white key-value">
           {array.map(key => <>
             <div>{key}</div>
-            <div>{obj[key]}</div>
+            <div>{companyInfo[key]}</div>
           </>)}
         </KeyValueGrid>
       </div>
