@@ -79,7 +79,7 @@ const CompanyInfoComponent = (obj: Record<string, string>) => {
   const array = Object.keys(obj);
   return (
     <CompanyInfo>
-      <div style={{width: '80%'}}>
+      <div>
         <KeyValueGrid className="bg-white key-value">
           {array.map(key => <>
             <div>{key}</div>
