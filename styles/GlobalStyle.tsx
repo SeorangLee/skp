@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .border-box {
-    box-sizing: border-box;
+    box-sizing: border-box !important;
   }
 `;
 
