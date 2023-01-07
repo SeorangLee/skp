@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "../../styles/components/layout";
 import { generateKey } from "../../util";
-import SkpImage from "../SkpImage";
+import { SkpResponsiveImage } from "../SkpImage";
 import { Product } from "./const";
 
 const ImageContainer = styled(Flex)`
@@ -49,7 +49,7 @@ export const ProductInformation = ({ products }: Props) => {
 const ProdocutItem = ({ img, productInfo }: Product) => {
   return (
     <ImageContainer>
-      <div><SkpImage img={img} /></div>
+      <div><SkpResponsiveImage img={img} /></div>
       <div>
         <div>{productInfo.title}</div>
         <div>{productInfo.description}</div>

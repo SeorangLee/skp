@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Product.module.scss";
 import { products, solutions } from "./const";
 import { sonixLogo, sonixUI1, sonixUI2 } from "../../assets/images";
-import SkpImage from "../SkpImage";
+import { SkpResponsiveImage } from "../SkpImage";
 import { ProductInformation } from "./ProductInformation";
 
 
@@ -13,7 +13,7 @@ const Product: React.FC = (props) => {
       <div className={styles.product1}>
         <div className={styles.product1_img}>
           <div>
-            <SkpImage img={sonixLogo} />
+            <SkpResponsiveImage img={sonixLogo} />
           </div>
         </div>
         <div>
@@ -21,8 +21,8 @@ const Product: React.FC = (props) => {
           <div>심장의 형태학적, 기능적 평가를 위한 자동 정량화 기술 개발</div>
         </div>
         <div className={styles.product1_img_2}>
-          <div><SkpImage img={sonixUI1} /></div>
-          <div><SkpImage img={sonixUI2} /></div>
+          <div><SkpResponsiveImage img={sonixUI1} /></div>
+          <div><SkpResponsiveImage img={sonixUI2} /></div>
         </div>
       </div>
       <div className={styles.product2}>

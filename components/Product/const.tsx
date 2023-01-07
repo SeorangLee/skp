@@ -1,4 +1,4 @@
-import Image from "next/dist/client/image";
+import Image from "next/legacy/image";
 import { click, report, share, SkpImageType } from "../../assets/images";
 
 export const solutions = [

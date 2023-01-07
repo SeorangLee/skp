@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { logo } from "../../assets/images";
 import { Ref as RefType } from "../../util/hooks";
-import SkpImage from "../SkpImage";
+import { SkpResponsiveImage } from "../SkpImage";
 import { PageItem } from "./const";
 import { ScrollNav } from "./ScrollNav";
 
@@ -39,7 +39,7 @@ const Information = styled.div`
 const InformationComponent = ({ refs, pageItems }: InformationProps) => {
   return (
     <Information>
-      <div><SkpImage img={logo} width={80} height={28} /></div>
+      <div><SkpResponsiveImage img={logo} width={80} height={28} /></div>
       <div>
         <div>(48932) 부산광역시 중구 대청로 121-1, 102동 1309호(대청동1가, 코모도에스테이트) 주식회사 온택트헬스</div>
         <div>대표 장혁재 | 사업자등록번호 436-88-02020 | Email : cdh82@ontacthealth.com</div>

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/dist/client/image";
+import Image from "next/legacy/image";
 import { Flex } from "../styles/components/layout";
+import { device } from "../styles/components/media-query";
 
 const Container = styled.div`
   > div:nth-child(2) {
@@ -40,16 +41,19 @@ const ImgContainer = styled.div`
 `;
 
 const Banner = styled(Flex)`
+  background-image: url("/images/banner-bg.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center left;
   position: relative;
   color: #02073e;
   > .info {
-    position: absolute;
-    top: 30%;
-    left: 17%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-left: 17vw;
     width: 18rem;
     > div:nth-child(1) {
       line-height: 200%;
-      height: 100%;
       font-weight: 600;
     }
     > div:nth-child(2) {
@@ -58,13 +62,16 @@ const Banner = styled(Flex)`
       line-height: 170%;
     }
   }
+  @media ${device.tablet} {
+    background-position: center right;
+  }
 `;
 
 const About: React.FC = (props) => {
   return (
       <Container>
         <Banner>
-          <Image src="/images/banner-bg.png" alt="banner" className="w-100" width={1700} height={700} />
+          {/* <Image src="/images/banner-bg.png" alt="banner" className="w-100" width={1700} height={700} /> */}
           <div className="info">
             <div>Our mission is to make healthcare service sustainable through transforming data to knowledge</div>
             <div>㈜온택트헬스는 자체적으로 보유하고 있는 의료 데이터 분석 전문 조직과 데이터 생성 SOP를 기반으로 양질의 심장초음파 참값 DB를 생성하고 있고, 이를 활용하여 심장초음파 영상 분석 AI 소프트웨어를 개발하고 있습니다.</div>
