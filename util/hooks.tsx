@@ -2,7 +2,7 @@ import React from "react";
 import { useCallback, useRef } from "react";
 import { CursorPointer } from "../styles/components/layout";
 
-type Ref<T = any> = React.MutableRefObject<T>;
+export type Ref<T = any> = React.MutableRefObject<T>;
 
 export function useRefs(): [Ref<Record<string, Ref>>, (refName: string) => (ref: Ref) => void] {
   const refs = useRef<Record<string, Ref>>({});
